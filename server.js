@@ -355,7 +355,7 @@ app.use(
   })
 );
 
-app.get('/analytics', async (req, res) => {
+app.get('/analytics', requireAuth, async (req, res) => {
     try {
         const participants = await Participant.find({ createdAt: { $exists: true } });
 
