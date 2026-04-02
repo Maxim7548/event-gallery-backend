@@ -214,21 +214,21 @@ app.get('/events', async (req, res) => {
 
 app.get('/events/scroll', async (req, res) => {
     try {
-        const limit = parseInt(req.query.limit) || 2;
-        const lastId = req.query.lastId;
+        const limit = parseInt(req.query.limit) || 2; 
+        const cursor = req.query.cursor;
 
         let query = {};
-        if (lastId) {
-            query = { _id: { $gt: lastId } };
+        if (cursor) {
+            query = { _id: { $lt: cursor } };
         }
 
         const data = await Event.find(query)
-            .sort({ _id: 1 })
+            .sort({ _id: -1 }) 
             .limit(limit);
 
         res.json({ data, count: data.length });
     } catch (err) {
-        res.status(500).json({ error: "Помилка" });
+        res.status(500).json({ error: "Помилка пагінації" });
     }
 });
 
