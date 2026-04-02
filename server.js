@@ -59,13 +59,16 @@ app.use(cors({
     credentials: true
 }));
 
+app.set('trust proxy', 1);
+
 app.use(session({
     secret: 'super_secret_gallery_key',
     resave: false,
     saveUninitialized: false,
     cookie: {
         httpOnly: true,
-        secure: false, 
+        secure: true, 
+        sameSite: 'none',
         maxAge: 1000 * 60 * 60
     }
 }));
