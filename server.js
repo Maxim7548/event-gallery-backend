@@ -55,7 +55,7 @@ mongoose.connect(MONGO_URL)
 
 app.use(express.json());
 app.use(cors({
-    origin: ['http://localhost:5173', 'https://prak-front-end.vercel.app'],
+    origin: ['https://prak-front-end.vercel.app'],
     credentials: true
 }));
 
