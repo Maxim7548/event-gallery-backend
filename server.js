@@ -139,11 +139,13 @@ app.post('/logout', (req, res) => {
 
 app.post('/events', requireAuth, async (req, res) => {
     try {
-        const { title, description, date } = req.body;
+        const { title, description, date, organizer, image } = req.body;
         const newEvent = new Event({
             title,
             description,
             date,
+            organizer,
+            image,
             creator: req.session.user.id
         });
         await newEvent.save();
@@ -374,4 +376,3 @@ app.get('/analytics', async (req, res) => {
 httpServer.listen(PORT, () => {
     console.log(`Сервер працює на порті ${PORT}`);
 });
-
