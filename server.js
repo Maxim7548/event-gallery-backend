@@ -21,7 +21,7 @@ const httpServer = createServer(app);
 
 const io = new Server(httpServer, {
     cors: {
-        origin: 'http://localhost:5173', 
+        origin: ['http://localhost:5173', 'https://prak-front-end.vercel.app'],
         credentials: true
     }
 });
@@ -55,7 +55,7 @@ mongoose.connect(MONGO_URL)
 
 app.use(express.json());
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: ['http://localhost:5173', 'https://prak-front-end.vercel.app'],
     credentials: true
 }));
 
